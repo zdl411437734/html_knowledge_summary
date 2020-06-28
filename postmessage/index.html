@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    我是发送界面
+    <button id="sendmsg" onclick="sendMsg()">发送监听</button>
+    <script>
+        function sendMsg(){
+            console.log("我来发送");
+            window.parent.postMessage({
+                act: 'myresponse',
+                msg:{
+                    name:'zhang'
+                }
+            },"*");
+            window.parent.postMessage({
+          	act: 'response',
+          	msg: {
+                type:'EOPEN_NOMAL_AGREE_2.0_PC',
+          	    answer: '成功'
+          	}
+          	}, '*');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    我是监听界面
+<body>
+    <script>
+
+        window.onload = function(){
+            console.log("onload finish");
+            if(window.addEventListener){
+                console.log("onload addEventListener");
+                window.addEventListener('message', function (e) {
+                    console.log("addEventListener我监听到了");
+                    // if (e.data.act == 'response') {
+                    //     alert(e.data.msg.answer);
+                    // } else {
+                    //     alert('未定义的消息: ' + e.data.act);
+                    // }
+                    console.log(e.data);
+                });
+            }else{
+                window.attachEvent('onmessage', function (e) {
+                    console.log("attachEvent我监听到了");
+                    // if (e.data.act == 'response') {
+                    //     alert(e.data.msg.answer);
+                    // } else {
+                    //     alert('未定义的消息: ' + e.data.act);
+                    // }
+                    console.log(e.data);
+                });
+            }
+        }
+
+        var popup =  window.open("indexopen.html");
+        popup.onload = function(){
+            // popup.postMessage("hello there!", "*");
+            console.log("popup 设置监听");
+            popup.addEventListener('message', function (e) {
+                    console.log("popup addEventListener我监听到了");
+                    console.log(e.data);
+                },false);
+            popup.mydataFunction = function(){
+                console.log("自定义的函数！");
+            }
+        }
+      
+    </script>
+</body>
+
+</html>
